@@ -109,26 +109,26 @@ ORDER BY date DESC
 
 
 
-CREATE TABLE GOLD_AGG_HOSTEL_CITY_SALES AS 
-SELECT hostel_city, SUM(total_amount) AS total_revenue 
+CREATE OR REPLACE TABLE GOLD_AGG_HOSTEL_CITY_SALES AS 
+SELECT hotel_city, SUM(total_amount) AS total_revenue 
 FROM SILVER_HOTEL_BOOKINGS
-GROUP BY hostel_city
+GROUP BY hotel_city
 ORDER BY total_revenue DESC
 
 
-CREATE TABLE GOLD_BOOKING_CLEAN AS
+CREATE OR REPLACE TABLE GOLD_BOOKING_CLEAN AS
 SELECT 
-    booking_id         VARCHAR,
-    hotel_id	       VARCHAR,
-    hotel_city	       VARCHAR,
-    customer_id	       VARCHAR,
-    customer_name	   VARCHAR,
-    customer_email	   VARCHAR,
-    check_in_date	   DATE,
-    check_out_date	   DATE,
-    room_type	       VARCHAR,
-    num_guests	       INTEGER,
-    total_amount	   FLOAT,
-    currency	       VARCHAR,
-    booking_status     VARCHAR
+    booking_id,
+    hotel_id,
+    hotel_city,
+    customer_id,
+    customer_name,
+    customer_email,
+    check_in_date,
+    check_out_date,
+    room_type,
+    num_guests,
+    total_amount,
+    currency,
+    booking_status 
 FROM SILVER_HOTEL_BOOKINGS
